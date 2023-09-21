@@ -24,7 +24,7 @@ const Carousel = () => {
           <img src={"../images/carousel_2.jpg"} alt="Carousel POR" />
         </SwiperSlide>
         <SwiperSlide className="bg-black">
-          <video controls muted="muted">
+          <video controls muted={true}>
             <source src={"../images/carousel_vid.mp4"} type="video/mp4" />
           </video>
         </SwiperSlide>

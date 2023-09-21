@@ -1,9 +1,7 @@
 import { useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProductDetails } from ".";
-import { callAPI } from "../utils/CallApi";
 import { GB_CURRENCY } from "../utils/constants";
-
 
 export type Product = {
   id: number;
@@ -19,7 +17,7 @@ export type Product = {
   attribute: string;
   quantity: number;
   badge: string;
-}
+};
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -29,42 +27,41 @@ const SearchResults = () => {
     const searchTerm = searchParams.get("searchTerm");
     const category = searchParams.get("category");
 
-    if (category)
-    callAPI(`data/search.json`).then((searchResults) => {
-      const categoryResults = searchResults[category];
-      if (searchTerm) {
-        const results = categoryResults.filter((product: { title: string; }) =>
-          product.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setProducts(results);
-      } else {
-        setProducts(categoryResults);
-      }
-    });
-  };
+    //   if (category)
+    //     callAPI(`data/search.json`).then((searchResults) => {
+    //       const categoryResults = searchResults[category];
+    //       if (searchTerm) {
+    //         const results = categoryResults.filter((product: { title: string }) =>
+    //           product.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    //         );
+    //         setProducts(results);
+    //       } else {
+    //         setProducts(categoryResults);
+    //       }
+    //     });
+    // };
 
-  useEffect(() => {
-    getSearchResults();
-  }, [searchParams]);
+    // useEffect(() => {
+    //   getSearchResults();
+    // }, [searchParams]);
 
-  return (
-    <div className="min-w-[1200px] max-w-[1300px] m-auto pt-4">
-      {products &&
-        products.map((product, key) => {
+    return (
+      <div className="m-auto min-w-[1200px] max-w-[1300px] pt-4">
+        {products.map((product, key) => {
           return (
             <Link key={key} to={`/product/${product.id}`}>
-              <div className="h-[250px] grid grid-cols-12 rounded mt-1 mb-1 ">
-                <div className="col-span-2 p-4 bg-gray-200">
+              <div className="mb-1 mt-1 grid h-[250px] grid-cols-12 rounded ">
+                <div className="col-span-2 bg-gray-200 p-4">
                   <img
                     className="m-auto"
                     src={product.image_small}
                     alt="Search result product"
                   />
                 </div>
-                <div className="col-span-10 bg-gray-50 border border-gray-100 hover:bg-gray-100 ">
-                  <div className="font-medium text-black p-2">
+                <div className="col-span-10 border border-gray-100 bg-gray-50 hover:bg-gray-100 ">
+                  <div className="p-2 font-medium text-black">
                     <ProductDetails product={product} ratings={true} />
-                    <div className="text-xl xl:text-2xl pt-1">
+                    <div className="pt-1 text-xl xl:text-2xl">
                       {GB_CURRENCY.format(product.price)}
                     </div>
                   </div>
@@ -73,8 +70,8 @@ const SearchResults = () => {
             </Link>
           );
         })}
-    </div>
-  );
+      </div>
+    );
+  };
 };
-
 export default SearchResults;

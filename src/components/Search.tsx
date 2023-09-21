@@ -1,13 +1,10 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 
-import { callAPI } from "../utils/CallApi";
-
-
 type Suggestion = {
   id: number;
   title: string;
-}
+};
 
 const Search = () => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>();
@@ -41,10 +38,10 @@ const Search = () => {
 
   return (
     <div className="w-[100%]">
-      <div className="flex items-center h-10 bg-amazonclone-yellow rounded">
+      <div className="bg-amazonclone-yellow flex h-10 items-center rounded">
         <select
           onChange={(e) => setCategory(e.target.value)}
-          className="p-2 bg-gray-300 text-black border text-xs xl:text-sm"
+          className="border bg-gray-300 p-2 text-xs text-black xl:text-sm"
         >
           <option>All</option>
           <option>Deals</option>
@@ -55,19 +52,20 @@ const Search = () => {
           <option>Mobiles</option>
         </select>
         <input
-          className="flex grow items-center h-[100%] rounded-l text-black"
+          className="flex h-[100%] grow items-center rounded-l text-black"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button 
-        // onClick={onHandleSubmit}
-         className="w-[45px]">
-          <MagnifyingGlassIcon className="h-[27px] m-auto stroke-slate-900" />
+        <button
+          // onClick={onHandleSubmit}
+          className="w-[45px]"
+        >
+          <MagnifyingGlassIcon className="m-auto h-[27px] stroke-slate-900" />
         </button>
       </div>
       {suggestions && (
-        <div className="bg-white text-black w-full z-40 absolute">
+        <div className="absolute z-40 w-full bg-white text-black">
           {suggestions
             .filter((suggestion) => {
               const currentSearchTerm = searchTerm.toLowerCase();
