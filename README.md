@@ -16,6 +16,12 @@ Navigate to the project directory:
 cd estore
 ```
 
+Change Working branch to dev
+
+```shell
+git checkout dev
+```
+
 ## Step 2: Create an Environment File
 
 Rename `.env.example` to `.env` using the following command:
@@ -56,3 +62,7 @@ Start the Next.js development server:
 ```shell
 npm run dev
 ```
+
+This will start the development server, and you should see output in the terminal indicating that the project is running. Open a web browser and access the project at the specified address (usually http://localhost:3000) to view it locally.
+
+Now, the EStore project should be set up and running on your local machine. Make sure to follow any additional project-specific instructions or configurations provided in the project's documentation.
