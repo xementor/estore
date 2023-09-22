@@ -7,8 +7,8 @@ const NavBar = () => {
   //   return state.cart.productsNumber;
   // });
   return (
-    <header className="min-w-[1000px]">
-      <div className="bg-amazonclone flex h-[60px] text-white">
+    <header className="min-w-[1000px] bg-blue-400">
+      <div className="bg-amazonclone flex h-[60px] ">
         {/* Left */}
         <div className="m-4 flex items-center">
           <Link href={"/"}>
