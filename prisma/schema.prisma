@@ -27,12 +27,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String?  @db.Text
-    access_token      String?  @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String?  @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -55,6 +55,85 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    Customer      Customer?
+}
+
+model Customer {
+    id          Int      @id @default(autoincrement())
+    userId      String   @unique
+    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    firstName   String?
+    lastName    String?
+    address     String?
+    phoneNumber String?
+    orders      Order[]
+    reviews     Review[]
+    Cart        Cart[]
+}
+
+model Product {
+    id          Int        @id @default(autoincrement())
+    name        String
+    description String
+    price       Float
+    stockQty    Int
+    categoryId  Int
+    category    Category   @relation(fields: [categoryId], references: [id])
+    reviews     Review[]
+    CartItem    CartItem[]
+}
+
+model Category {
+    id       Int       @id @default(autoincrement())
+    name     String
+    products Product[]
+}
+
+model Cart {
+    id         Int        @id @default(autoincrement())
+    customerId Int
+    user       Customer   @relation(fields: [customerId], references: [id])
+    status     String
+    cartItems  CartItem[]
+    Order      Order[]
+}
+
+model CartItem {
+    id        Int     @id @default(autoincrement())
+    cartId    Int
+    cart      Cart    @relation(fields: [cartId], references: [id])
+    productId Int
+    product   Product @relation(fields: [productId], references: [id])
+    quantity  Int
+}
+
+model Order {
+    id         Int      @id @default(autoincrement())
+    cartId     Int
+    cart       Cart     @relation(fields: [cartId], references: [id])
+    orderDate  DateTime @default(now())
+    customerId Int
+    Customer   Customer @relation(fields: [customerId], references: [id])
+    Payment    Payment?
+}
+
+model Payment {
+    id            Int      @id @default(autoincrement())
+    orderId       Int      @unique
+    order         Order    @relation(fields: [orderId], references: [id])
+    paymentDate   DateTime
+    paymentMethod String
+}
+
+model Review {
+    id         Int      @id @default(autoincrement())
+    customerId Int
+    customer   Customer @relation(fields: [customerId], references: [id])
+    productId  Int
+    product    Product  @relation(fields: [productId], references: [id])
+    rating     Int
+    comment    String
+    reviewDate DateTime @default(now())
 }
 
 model VerificationToken {
