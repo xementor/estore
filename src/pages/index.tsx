@@ -1,10 +1,7 @@
-import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 
-import { api } from "@/utils/api";
 import HomePage from "@/components/HomePage";
-import { Carousel, CarouselCategory, CarouselProduct } from "@/components";
+import AuthShowcase from "@/components/AuthShowcase";
 
 export default function Home() {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });

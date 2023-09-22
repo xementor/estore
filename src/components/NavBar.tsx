@@ -1,6 +1,7 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Search } from ".";
 import Link from "next/link";
+import AuthShowcase from "./AuthShowcase";
 
 const NavBar = () => {
   // const cart = useSelector((state) => {
@@ -30,7 +31,7 @@ const NavBar = () => {
         {/* Right */}
         <div className="m-4 flex items-center">
           <div className="pl-4 pr-4">
-            <div className="text-xs xl:text-sm">Hello, sign in</div>
+            <AuthShowcase />
             <div className="text-sm font-bold xl:text-base">
               Accounts & Lists
             </div>
