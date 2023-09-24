@@ -1,3 +1,4 @@
+import { api } from "@/utils/api";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 
@@ -7,6 +8,11 @@ type Suggestion = {
 };
 
 const Search = () => {
+  // const { data: secretMessage } = api.home.getSecretMessage.useQuery(undefined);
+  const { data: categories } = api.home.getAllCategory.useQuery(undefined);
+
+  console.log("cat", categories);
+
   const [suggestions, setSuggestions] = useState<Suggestion[]>();
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All");
@@ -44,12 +50,8 @@ const Search = () => {
           className="border bg-gray-300 p-2 text-xs text-black xl:text-sm"
         >
           <option>All</option>
-          <option>Deals</option>
-          <option>Amazon</option>
-          <option>Fashion</option>
-          <option>Computers</option>
-          <option>Home</option>
-          <option>Mobiles</option>
+          {categories &&
+            categories.map((cat, i) => <option key={i}>{cat.name}</option>)}
         </select>
         <input
           className="flex h-[100%] grow items-center rounded-l text-black"

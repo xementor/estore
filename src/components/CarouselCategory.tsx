@@ -22,8 +22,8 @@ const CarouselCategory = () => {
   // };
 
   return (
-    <div className="bg-white m-3">
-      <div className="text-2xl font-semibold p-3">Shop by Category</div>
+    <div className="m-3 bg-white">
+      <div className="p-3 text-2xl font-semibold">Shop by Category</div>
       <Swiper
         slidesPerView={5}
         spaceBetween={10}
