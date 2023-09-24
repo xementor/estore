@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ProductDetails } from ".";
 import { GB_CURRENCY } from "../utils/constants";
-import { Product } from "./SearchResults";
+import { Product } from "../utils/types/Product";
 
 const ProductPage = () => {
   const { id } = useParams();

@@ -2,22 +2,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProductDetails } from ".";
 import { GB_CURRENCY } from "../utils/constants";
-
-export type Product = {
-  id: number;
-  title: string;
-  price: number;
-  image_small: string;
-  image_large: string;
-  description: string;
-  category: string;
-  ratings: number;
-  avgRating: number;
-  brand: string;
-  attribute: string;
-  quantity: number;
-  badge: string;
-};
+import { Product } from "../utils/types/Product";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
