@@ -11,7 +11,7 @@ export default function AuthShowcase() {
       </p>
       <button
         className="text-white"
-        onClick={sessionData ? () => {} : () => void signIn()}
+        onClick={sessionData ? () => undefined : () => void signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
