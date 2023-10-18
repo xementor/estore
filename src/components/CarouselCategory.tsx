@@ -4,6 +4,7 @@ import { useNavigate, createSearchParams } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { api } from "@/utils/api";
 
 const CarouselCategory = () => {
   function searchCategory(arg0: string): void {
@@ -20,55 +21,32 @@ const CarouselCategory = () => {
   //     })}`,
   //   });
   // };
+  const { data: categories } = api.home.getAllCategory.useQuery();
 
-  return (
-    <div className="m-3 bg-white">
-      <div className="p-3 text-2xl font-semibold">Shop by Category</div>
-      <Swiper
-        slidesPerView={5}
-        spaceBetween={10}
-        navigation={true}
-        modules={[Navigation]}
-      >
-        <SwiperSlide
-          onClick={() => searchCategory("Deals")}
-          className="cursor-pointer"
+  if (categories)
+    return (
+      <div className="m-3 bg-white">
+        <div className="p-3 text-2xl font-semibold">Shop by Category</div>
+        <Swiper
+          slidesPerView={5}
+          spaceBetween={10}
+          navigation={true}
+          modules={[Navigation]}
         >
-          <img src={"../images/category_0.jpg"} alt="Deal category" />
-        </SwiperSlide>
-        <SwiperSlide
-          onClick={() => searchCategory("Amazon")}
-          className="cursor-pointer"
-        >
-          <img src={"../images/category_1.jpg"} alt="Amazon category" />
-        </SwiperSlide>
-        <SwiperSlide
-          onClick={() => searchCategory("Fashion")}
-          className="cursor-pointer"
-        >
-          <img src={"../images/category_2.jpg"} alt="Fashion category" />
-        </SwiperSlide>
-        <SwiperSlide
-          onClick={() => searchCategory("Computers")}
-          className="cursor-pointer"
-        >
-          <img src={"../images/category_3.jpg"} alt="Computers category" />
-        </SwiperSlide>
-        <SwiperSlide
-          onClick={() => searchCategory("Home")}
-          className="cursor-pointer"
-        >
-          <img src={"../images/category_4.jpg"} alt="Home category" />
-        </SwiperSlide>
-        <SwiperSlide
-          onClick={() => searchCategory("Mobiles")}
-          className="cursor-pointer"
-        >
-          <img src={"../images/category_5.jpg"} alt="Mobiles category" />
-        </SwiperSlide>
-      </Swiper>
-    </div>
-  );
+          {categories.map((cat, i) => {
+            return (
+              <SwiperSlide
+                onClick={() => searchCategory("Deals")}
+                className="cursor-pointer"
+              >
+                <p>{cat.name}</p>
+                <img src={"../images/category_0.jpg"} alt="Deal category" />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    );
 };
 
 export default CarouselCategory;

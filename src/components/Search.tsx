@@ -1,6 +1,7 @@
 import { api } from "@/utils/api";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useState, useEffect, MouseEvent } from "react";
 
 type Suggestion = {
   id: number;
@@ -16,21 +17,24 @@ const Search = () => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>();
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All");
+  const router = useRouter();
 
-  // const onHandleSubmit = (e: any) => {
-  //   e.preventDefault();
+  const onHandleSubmit = (e: any) => {
+    e.preventDefault();
 
-  //   navigate({
-  //     pathname: "search",
-  //     search: `${createSearchParams({
-  //       category: `${category}`,
-  //       searchTerm: `${searchTerm}`,
-  //     })}`,
-  //   });
+    router.push("/search");
 
-  //   setSearchTerm("");
-  //   setCategory("All");
-  // };
+    // navigate({
+    //   pathname: "search",
+    //   search: `${createSearchParams({
+    //     category: `${category}`,
+    //     searchTerm: `${searchTerm}`,
+    //   })}`,
+    // });
+
+    setSearchTerm("");
+    setCategory("All");
+  };
 
   // const getSuggestions = () => {
   //   callAPI(`data/suggestions.json`).then((suggestionResults) => {
@@ -59,10 +63,7 @@ const Search = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button
-          // onClick={onHandleSubmit}
-          className="w-[45px]"
-        >
+        <button onClick={onHandleSubmit} className="w-[45px]">
           <MagnifyingGlassIcon className="m-auto h-[27px] stroke-slate-900" />
         </button>
       </div>
