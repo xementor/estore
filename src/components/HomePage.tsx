@@ -6,18 +6,50 @@ import {
   CarouselProduct,
   NavBar,
 } from ".";
+import { useEffect, useState } from "react";
+import { Product } from "@prisma/client";
 
 const HomePage = () => {
-  const { data: products } = api.product.getAll.useQuery();
+  const [products, setProducts] = useState<Product[]>([]);
+  const { data: dbProducts } = api.product.getAll.useQuery(undefined, {
+    onSuccess(data) {
+      setProducts(data);
+    },
+  });
+  const { data: categories } = api.home.getAllCategory.useQuery();
+
+  function filterProducts(catId?: number) {
+    if (catId && dbProducts) {
+      setProducts(dbProducts.filter((prod) => prod.categoryId == catId));
+    }
+  }
+
   return (
     <div className="bg-amazonclone-background">
       <NavBar />
       <div className="m-auto min-w-[1000px] max-w-[1500px]">
         <div>
-          <h3 className="text-2xl">All products</h3>
+          <div className="flex items-center gap-x-4 py-4">
+            <h3 className="text-2xl">All products</h3>
+            <div className="flex gap-x-3">
+              {categories?.map((cat, i) => (
+                <button
+                  className="btn btn-sm"
+                  key={i}
+                  onClick={() => filterProducts(cat.id)}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+          </div>
           {products &&
             products.map((product, i) => {
-              return <p>{product.name}</p>;
+              return (
+                <div className="border-2 p-4">
+                  <p>{product.name}</p>
+                </div>
+              );
             })}
         </div>
 
