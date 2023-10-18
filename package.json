@@ -25,6 +25,7 @@
     "@trpc/react-query": "^10.34.0",
     "@trpc/server": "^10.34.0",
     "axios": "^1.3.4",
+    "clsx": "^2.0.0",
     "next": "^13.4.13",
     "next-auth": "^4.22.4",
     "react": "18.2.0",

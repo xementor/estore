@@ -1,8 +1,9 @@
+import { Product } from "@prisma/client";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Product } from "@/utils/types/Product";
 
 const initialState = {
   products: [] as Product[],
+  searchText: "",
 };
 export const productSlice = createSlice({
   initialState,
@@ -11,9 +12,12 @@ export const productSlice = createSlice({
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
+    setSearchText: (state, action: PayloadAction<string>) => {
+      state.searchText = action.payload;
+    },
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, setSearchText } = productSlice.actions;
 
 export default productSlice.reducer;
