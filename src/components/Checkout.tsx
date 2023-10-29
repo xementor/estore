@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ProductDetails } from ".";
 import { GB_CURRENCY } from "../utils/constants";
 import {
@@ -8,6 +7,7 @@ import {
 } from "../store/cartSlice";
 
 import { useAppDispatch, useAppSelector } from "@/store/hook";
+import Link from "next/link";
 
 const Checkout = () => {
   const products = useAppSelector((state) => state.cart.products);
@@ -33,18 +33,18 @@ const Checkout = () => {
                   <div className="mr-4 grid grid-cols-12 divide-y divide-gray-400">
                     <div className="col-span-10 grid grid-cols-8 divide-y divide-gray-400">
                       <div className="col-span-2">
-                        <Link to={`/product/${product.id}`}>
+                        <Link href={`/product/${product.id}`}>
                           <img
                             className="m-auto p-4"
-                            src={product.image_small}
+                            src={`/images/product_${product.id}.jpg`}
                             alt="Checkout product"
                           />
                         </Link>
                       </div>
                       <div className="col-span-6">
                         <div className="mt-2 font-medium text-black">
-                          <Link to={`/product/${product.id}`}>
-                            <ProductDetails product={product} ratings={false} />
+                          <Link href={`/product/${product.id}`}>
+                            <ProductDetails product={product}  />
                           </Link>
                         </div>
                         <div>
