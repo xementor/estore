@@ -11,7 +11,7 @@ const HomePage = () => {
   const { data: products } = api.product.getAll.useQuery();
   return (
     <div className="bg-amazonclone-background">
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="m-auto min-w-[1000px] max-w-[1500px]">
         <div>
           <h3 className="text-2xl">All products</h3>

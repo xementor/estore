@@ -7,7 +7,7 @@ import {
 } from "@/server/api/trpc";
 
 export const homeRouter = createTRPCRouter({
-  getProductByCategory: publicProcedure
+getProductByCategory: publicProcedure
     .input(z.object({ categoryId: z.number() }))
     .query(({ input, ctx }) => {
       return ctx.prisma.product.findMany();

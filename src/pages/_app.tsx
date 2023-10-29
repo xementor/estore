@@ -9,6 +9,7 @@ import "@/styles/globals.css";
 import { Provider } from "react-redux";
 
 import {store} from "@/store/configureStore";
+import { NavBar } from "@/components";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -17,6 +18,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
+        <NavBar />
         <Component {...pageProps} />
       </Provider>
     </SessionProvider>

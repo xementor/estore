@@ -1,13 +1,29 @@
-import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ProductDetails } from ".";
 import { GB_CURRENCY } from "../utils/constants";
-import { Product } from "../utils/types/Product";
+import { useRouter } from "next/router";
+import { api } from "@/utils/api";
+import Link from "next/link";
 
 const ProductPage = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState<Product>();
+  const router = useRouter()
+  const productId = router.query.product
+
+  if (typeof productId == "string") {
+    
+    return <Product productId={productId} />;
+  } else {
+    console.info("query", router.query);
+    return <p>router query perse error</p>;
+  }
+
+}
+
+const Product = ({productId}:{productId:string}) => {
+  const {data: product} = api.product.getById.useQuery({id:parseInt(productId)});
+
+  // const [product, setProduct] = useState<Product>();
   const [quantity, setQuantity] = useState("1");
   const dispatch = useDispatch();
 
@@ -16,7 +32,7 @@ const ProductPage = () => {
   //     setProduct(productResults[id]);
   //   });
   // };
-
+ 
   // const addQuantityToProduct = () => {
   //   setProduct((product.quantity = quantity));
   //   return product;
@@ -26,7 +42,7 @@ const ProductPage = () => {
   //   getProduct();
   // }, []);
 
-  if (!product?.title) return <h1>Loading Product ...</h1>;
+  if (product) 
 
   return (
     product && (
@@ -40,7 +56,7 @@ const ProductPage = () => {
             {/* Middle */}
             <div className="col-span-5 divide-y divide-gray-400 rounded bg-white p-4">
               <div className="mb-3">
-                <ProductDetails product={product} ratings={true} />
+                <ProductDetails product={product}  />
               </div>
               <div className="mt-3 text-base xl:text-lg">
                 {product.description}
@@ -77,7 +93,7 @@ const ProductPage = () => {
                   <option>3</option>
                 </select>
               </div>
-              <Link to={"/checkout"}>
+              <Link href={"/checkout"}>
                 <button
                   // onClick={() => dispatch(addToCart(addQuantityToProduct()))}
                   className="btn"
@@ -91,6 +107,8 @@ const ProductPage = () => {
       </div>
     )
   );
+  else return <h1>Loading Product ...</h1>;
 };
+
 
 export default ProductPage;
