@@ -1,8 +1,11 @@
+import { Product } from "@prisma/client";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Product } from "@/utils/types/Product";
 
+interface CartProduct extends Product {
+  quantity: number,
+}
 type CartType = {
-  products: Product[];
+  products: CartProduct[];
   productsNumber: number;
 };
 const initialState: CartType = {
@@ -14,7 +17,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
+    addToCart: (state, action: PayloadAction<CartProduct>) => {
       // check if in product array
       const addProductExists = state.products.find(
         (product) => product.id === action.payload.id,

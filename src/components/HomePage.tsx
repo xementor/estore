@@ -25,7 +25,7 @@ const HomePage = () => {
 
   return (
     <div className="bg-amazonclone-background">
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="m-auto min-w-[1000px] max-w-[1500px]">
         {isLoading && <p>Loading..</p>}
         {dbProducts && <ProductViews allProducts={dbProducts} />}
