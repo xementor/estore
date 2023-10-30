@@ -15,14 +15,13 @@ const SearchResults = () => {
   return (
     <div className="m-auto min-w-[1200px] max-w-[1300px] pt-4">
       <h1>Searched product</h1>
-      {products &&
-        products.map((product, key) => {
-          return (
-            // <Link key={key} href={`/product/${product.id}`}>
-            <ProductC product={product} />
-            // </Link>
-          );
-        })}
+      {products?.map((product, key) => {
+        return (
+          // <Link key={key} href={`/product/${product.id}`}>
+          <ProductC key={key} product={product} />
+          // </Link>
+        );
+      })}
     </div>
   );
 };
@@ -54,7 +53,7 @@ export function ProductC({ product }: { product: Product }) {
             </div>
             <button
               onClick={() => dispatch(addToCart({ ...product, quantity: 1 }))}
-              className="rounded bg-blue-200 p-2"
+              className="btn btn-warning btn-sm"
             >
               Add to cart
             </button>

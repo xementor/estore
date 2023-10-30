@@ -16,9 +16,9 @@ const Search = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const onHandleSubmit = (e: any) => {
-    e.preventDefault();
-    router.push("/search");
+  const onHandleSubmit = async () => {
+    // e.preventDefault();
+    await router.push("/search");
   };
 
   return (
@@ -34,7 +34,7 @@ const Search = () => {
             dispatch(setSearchedProduct(e.target.value));
           }}
         />
-        <button onClick={onHandleSubmit} className="w-[45px]">
+        <button onClick={() => void onHandleSubmit()} className="w-[45px]">
           <MagnifyingGlassIcon className="m-auto h-[27px] stroke-slate-900" />
         </button>
       </div>

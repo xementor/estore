@@ -46,15 +46,14 @@ export const ProductViews = (props: {
           ))}
         </div>
       </div>
-      {products &&
-        products.map((product, i) => {
-          return (
-            <div className="border-2 p-4">
-              <ProductC product={product} />
-              {/* <p>{product.name}</p> */}
-            </div>
-          );
-        })}
+      {products?.map((product, i) => {
+        return (
+          <div className="border-2 p-4" key={i}>
+            <ProductC product={product} />
+            {/* <p>{product.name}</p> */}
+          </div>
+        );
+      })}
     </div>
   );
 };

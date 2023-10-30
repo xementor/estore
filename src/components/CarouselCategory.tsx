@@ -36,6 +36,7 @@ const CarouselCategory = () => {
           {categories.map((cat, i) => {
             return (
               <SwiperSlide
+                key={i}
                 onClick={() => searchCategory("Deals")}
                 className="cursor-pointer"
               >
