@@ -1,15 +1,12 @@
-import { NavBar } from "@/components";
+import { NavBar, SearchResults } from "@/components";
 import { ProductViews } from "@/components/ProductView";
 import { useAppSelector } from "@/store/hook";
 import { Head } from "next/document";
 import React, { useMemo } from "react";
 
 function SearchPage() {
-  const { products, searchText } = useAppSelector((state) => state.product);
-
-  const dbProducts = useMemo(() => {
-    return products.filter((p) => p.name.includes(searchText));
-  }, [searchText]);
+  const { searchedProduct } = useAppSelector((state) => state.product);
+  console.log("hi", searchedProduct);
 
   return (
     <>
@@ -19,9 +16,10 @@ function SearchPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
       {/* <main> */}
-      <NavBar />
+      {/* <NavBar /> */}
       <div>
-        <ProductViews allProducts={dbProducts} />
+        <ProductViews allProducts={searchedProduct} />
+        {/* <SearchResults /> */}
       </div>
       {/* </main> */}
     </>

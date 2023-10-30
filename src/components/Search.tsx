@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/store/hook";
-import { setSearchText } from "@/store/productSlice";
+import { setSearchText, setSearchedProduct } from "@/store/productSlice";
 import { api } from "@/utils/api";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
@@ -29,7 +29,10 @@ const Search = () => {
           type="text"
           placeholder="Search.."
           // value={searchTerm}
-          onChange={(e) => dispatch(setSearchText(e.target.value))}
+          onChange={(e) => {
+            console.log(e.target.value);
+            dispatch(setSearchedProduct(e.target.value));
+          }}
         />
         <button onClick={onHandleSubmit} className="w-[45px]">
           <MagnifyingGlassIcon className="m-auto h-[27px] stroke-slate-900" />

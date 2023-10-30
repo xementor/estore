@@ -2,6 +2,7 @@ import { api } from "@/utils/api";
 import { Category, Product } from "@prisma/client";
 import clsx from "clsx";
 import { useState } from "react";
+import { ProductC } from "./SearchResults";
 
 export const ProductViews = (props: {
   headerTitle?: string;
@@ -49,7 +50,8 @@ export const ProductViews = (props: {
         products.map((product, i) => {
           return (
             <div className="border-2 p-4">
-              <p>{product.name}</p>
+              <ProductC product={product} />
+              {/* <p>{product.name}</p> */}
             </div>
           );
         })}
