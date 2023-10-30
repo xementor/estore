@@ -8,7 +8,7 @@ const NavBar = () => {
   //   return state.cart.productsNumber;
   // });
   return (
-    <header className="bg-accent min-w-[1000px]">
+    <header className="min-w-[1000px] bg-accent">
       <div className="bg-amazonclone flex h-[60px] ">
         {/* Left */}
         <div className="m-4 flex items-center">
@@ -19,10 +19,6 @@ const NavBar = () => {
               alt="Amazon logo"
             />
           </Link>
-          <div className="pl-4 pr-4">
-            <div className="text-xs xl:text-sm">Deliver to</div>
-            <div className="text-sm font-bold xl:text-base">United Kingdom</div>
-          </div>
         </div>
         {/* Middle */}
         <div className="relative flex grow items-center">
@@ -36,10 +32,7 @@ const NavBar = () => {
               Accounts & Lists
             </div>
           </div>
-          <div className="pl-4 pr-4">
-            <div className="text-xs xl:text-sm">Returns</div>
-            <div className="text-sm font-bold xl:text-base">& Orders</div>
-          </div>
+
           <Link href={"/checkout"}>
             <div className="flex pl-3 pr-3">
               <ShoppingCartIcon className="h-[48px]" />
@@ -52,13 +45,6 @@ const NavBar = () => {
             </div>
           </Link>
         </div>
-      </div>
-      <div className="bg-amazonclone-light_blue flex space-x-3 p-2 pl-6 text-xs text-white xl:text-sm">
-        <div>Today&apos;s Deals</div>
-        <div>Customer Service</div>
-        <div>Registry</div>
-        <div>Gift Cards</div>
-        <div>Sell</div>
       </div>
     </header>
   );
