@@ -22,7 +22,7 @@ const Checkout = () => {
 
   return (
     <div className="bg-amazonclone-background h-screen">
-      <div className="m-auto  pt-8">
+      <div className="m-auto  pl-20 pt-8">
         <div className="grid grid-cols-8 gap-10">
           {/* Products */}
           <div className="col-span-6 bg-base-300">
