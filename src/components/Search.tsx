@@ -35,7 +35,7 @@ const Search = () => {
           }}
         />
         <button onClick={() => void onHandleSubmit()} className="w-[45px]">
-          <MagnifyingGlassIcon className="m-auto h-[27px] stroke-slate-900" />
+          <MagnifyingGlassIcon className="m-auto h-[27px] text-white" />
         </button>
       </div>
     </div>
