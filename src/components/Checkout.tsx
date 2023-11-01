@@ -22,10 +22,10 @@ const Checkout = () => {
 
   return (
     <div className="bg-amazonclone-background h-screen">
-      <div className="m-auto min-w-[1000px] max-w-[1500px] pt-8">
+      <div className="m-auto  pt-8">
         <div className="grid grid-cols-8 gap-10">
           {/* Products */}
-          <div className="col-span-6 bg-white">
+          <div className="col-span-6 bg-base-300">
             <div className="m-4 text-2xl xl:text-3xl">Shopping Cart</div>
             {products.map((product) => {
               return (
@@ -42,9 +42,9 @@ const Checkout = () => {
                         </Link>
                       </div>
                       <div className="col-span-6">
-                        <div className="mt-2 font-medium text-black">
+                        <div className="mt-2 font-medium ">
                           <Link href={`/product/${product.id}`}>
-                            <ProductDetails product={product}  />
+                            <ProductDetails product={product} />
                           </Link>
                         </div>
                         <div>
@@ -57,18 +57,18 @@ const Checkout = () => {
                         </div>
                         <div className="grid w-20 grid-cols-3 text-center">
                           <div
-                            className="cursor-pointer rounded bg-gray-400 text-xl xl:text-2xl"
+                            className="btn btn-accent btn-sm cursor-pointer rounded text-xl xl:text-2xl"
                             onClick={() =>
                               dispatch(decrementInCart(product.id))
                             }
                           >
                             -
                           </div>
-                          <div className="bg-gray-200 text-lg xl:text-xl">
+                          <div className=" text-lg xl:text-xl">
                             {product.quantity}
                           </div>
                           <div
-                            className="cursor-pointer rounded bg-gray-400 text-xl xl:text-2xl"
+                            className="btn btn-accent btn-sm cursor-pointer rounded text-xl xl:text-2xl"
                             onClick={() =>
                               dispatch(incrementInCart(product.id))
                             }
@@ -95,7 +95,7 @@ const Checkout = () => {
             </div>
           </div>
           {/* Checkout */}
-          <div className="col-span-2 h-[250px] rounded bg-white p-7">
+          <div className="col-span-2 h-[250px] rounded bg-base-300 p-7">
             <div className="mb-2 text-xs text-green-800 xl:text-sm">
               Your order qualifies for{" "}
               <span className="font-bold">FREE DELIVERY</span>. Delivery Details
@@ -106,7 +106,7 @@ const Checkout = () => {
                 {GB_CURRENCY.format(subtotal)}
               </span>
             </div>
-            <button className="btn">Proceed to Checkout</button>
+            <button className="btn btn-success">Proceed to Checkout</button>
           </div>
         </div>
       </div>

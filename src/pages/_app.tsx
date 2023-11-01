@@ -4,11 +4,10 @@ import { type AppType } from "next/app";
 
 import { api } from "@/utils/api";
 
-
 import "@/styles/globals.css";
 import { Provider } from "react-redux";
 
-import {store} from "@/store/configureStore";
+import { store } from "@/store/configureStore";
 import { NavBar } from "@/components";
 
 const MyApp: AppType<{ session: Session | null }> = ({
